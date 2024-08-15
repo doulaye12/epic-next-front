@@ -15,7 +15,6 @@ const baseUrl = getStrapiURL();
 
 export async function registerUserService(userData: RegisterUserProps) {
   const url = new URL("/api/auth/local/register", baseUrl);
-
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -32,6 +31,7 @@ export async function registerUserService(userData: RegisterUserProps) {
 }
 
 export async function loginUserService(userData: LoginUserProps) {
+
   const url = new URL("/api/auth/local", baseUrl);
 
   try {
@@ -43,8 +43,9 @@ export async function loginUserService(userData: LoginUserProps) {
       body: JSON.stringify({ ...userData }),
       cache: "no-cache",
     });
+    return response.json();
   } catch (error) {
     console.error("Login Service Errors : ", error);
   }
-}
 
+}
